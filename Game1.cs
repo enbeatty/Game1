@@ -24,6 +24,7 @@ namespace Game1
         /// Characters
         /// </summary>
         private Musketeer _musketeer;
+        private Bird _bird;
 
         public Game1()
         {
@@ -54,6 +55,7 @@ namespace Game1
             _backgroundWall = Content.Load<Texture2D>("Battleground2/wall@windows");
 
             _musketeer = new Musketeer();
+            _bird = new Bird() { Position = new Vector2(100, 100) };
             base.Initialize();
         }
 
@@ -61,6 +63,7 @@ namespace Game1
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _musketeer.LoadContent(Content);
+            _bird.LoadContent(Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -72,6 +75,7 @@ namespace Game1
 
             // TODO: Add your update logic here
             _musketeer.Update(gameTime);
+            _bird.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -83,6 +87,7 @@ namespace Game1
             _spriteBatch.Begin();
             _spriteBatch.Draw(_background, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundMount, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
+            _bird.Draw(gameTime, _spriteBatch);
             _spriteBatch.Draw(_backgroundWall, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundColumns, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundFloor, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
