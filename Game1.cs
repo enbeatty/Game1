@@ -39,6 +39,11 @@ namespace Game1
         private Song _backgroundMusic;
 
         /// <summary>
+        /// Fonts
+        /// </summary>
+        private SpriteFont _pixelUltima;
+
+        /// <summary>
         /// Testing
         /// </summary>
         private Texture2D ball;
@@ -109,6 +114,7 @@ namespace Game1
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(_backgroundMusic);
 
+            _pixelUltima = Content.Load<SpriteFont>("pixel_ultima");
             // TODO: use this.Content to load your game content here
         }
 
@@ -157,14 +163,16 @@ namespace Game1
             {
                 r.Draw(gameTime, _spriteBatch);
                 
-                var rect = new Rectangle((int)r.Bounds.X, (int)r.Bounds.Y, (int)r.Bounds.Width, (int)r.Bounds.Height);
-                _spriteBatch.Draw(ball, rect, Color.White);
+                /*var rect = new Rectangle((int)r.Bounds.X, (int)r.Bounds.Y, (int)r.Bounds.Width, (int)r.Bounds.Height);
+                _spriteBatch.Draw(ball, rect, Color.White);*/
                 
             }
 
-             var newrect = new Rectangle((int)_musketeer.Bounds.X, (int)_musketeer.Bounds.Y, (int)_musketeer.Bounds.Width, (int)_musketeer.Bounds.Height);
-            _spriteBatch.Draw(ball, newrect, Color.White);
+             /*var newrect = new Rectangle((int)_musketeer.Bounds.X, (int)_musketeer.Bounds.Y, (int)_musketeer.Bounds.Width, (int)_musketeer.Bounds.Height);
+            _spriteBatch.Draw(ball, newrect, Color.White);*/
             _musketeer.Draw(gameTime, _spriteBatch);
+
+            _spriteBatch.DrawString(_pixelUltima, "Welcome", new Vector2(315, 100), Color.Black); //TODO
 
             _spriteBatch.End();
 

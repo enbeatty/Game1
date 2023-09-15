@@ -25,18 +25,6 @@
 /processorParam:TextureFormat=Color
 /build:Assets_shadow/Black_crystal3.png
 
-#begin Assets_shadow/Black_crystal3.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Assets_shadow/Black_crystal3.png
-
 #begin Assets_shadow/Blue_crystal3.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -216,6 +204,13 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Musketeer/Walk.png
+
+#begin pixel_ultima.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:pixel_ultima.spritefont
 
 #begin rectangle.png
 /importer:TextureImporter
