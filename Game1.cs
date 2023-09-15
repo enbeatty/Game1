@@ -31,7 +31,7 @@ namespace Game1
         private Rock[] _rocks;
 
         private int _rockCount = 8;
-        private int _rocksCollected = 0;
+        private int _rocksLeft = 8;
 
         /// <summary>
         /// Sound
@@ -135,6 +135,7 @@ namespace Game1
             {
                 if (!r.Collected && r.Bounds.CollidesWith(_musketeer.Bounds))
                 {
+                    _rocksLeft--;
                     r.Collected = true;
                 }
             }
@@ -172,7 +173,7 @@ namespace Game1
             _spriteBatch.Draw(ball, newrect, Color.White);*/
             _musketeer.Draw(gameTime, _spriteBatch);
 
-            _spriteBatch.DrawString(_pixelUltima, "WORDS", new Vector2(315, 100), Color.Black); //TODO
+            _spriteBatch.DrawString(_pixelUltima, $"Crystals left: {_rocksLeft}", new Vector2(0, 0), Color.LightGoldenrodYellow); //TODO
 
             _spriteBatch.End();
 
