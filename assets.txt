@@ -1,6 +1,6 @@
-﻿Musketeer :: fantasy chibi female sprite - on https://craftpix.net/freebies/free-fantasy-chibi-female-sprites-pixel-art/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
-Battleground2 - on https://craftpix.net/freebies/free-pixel-art-fantasy-2d-battlegrounds/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
-Bird - on https://craftpix.net/freebies/free-street-animal-pixel-art-asset-pack/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
-Assets_shadow - on https://craftpix.net/freebies/top-down-crystals-pixel-art/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
+﻿Content/Musketeer :: fantasy chibi female sprite - on https://craftpix.net/freebies/free-fantasy-chibi-female-sprites-pixel-art/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
+Content/Battleground2 - on https://craftpix.net/freebies/free-pixel-art-fantasy-2d-battlegrounds/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
+Content/Bird - on https://craftpix.net/freebies/free-street-animal-pixel-art-asset-pack/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
+Content/Assets_shadow - on https://craftpix.net/freebies/top-down-crystals-pixel-art/ under the FREEBIE PRODUCTS found on https://craftpix.net/file-licenses/
 Content/pixel_ultima/pixel-ultima-regular.ttf - Pixel Ultima font created by Douglas Leao, released on Font Desk (https://fontesk.com/pixel-ultima-font/) under the Open Font License
 
