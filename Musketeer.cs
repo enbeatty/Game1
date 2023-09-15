@@ -27,7 +27,7 @@ namespace Game1
 
         private short _animationFrame = 0;
 
-        private BoundingRectangle _bounds = new BoundingRectangle(new Vector2(-128, -128), 48, 128);
+        private BoundingRectangle _bounds = new BoundingRectangle(new Vector2(-64, -64), 64, 128);
 
         /// <summary>
         /// The bounding volume of the sprite
@@ -66,8 +66,8 @@ namespace Game1
                 _movingTimer -= .3;
 
                 // Update the _bounds
-                _bounds.X = _position.X + 100; //TODO
-                _bounds.Y = _position.Y + 100; //TODO
+                _bounds.X = _position.X - 32; //TODO
+                _bounds.Y = _position.Y - 32; //TODO
             }
 
             // Apply keyboard movement
@@ -81,11 +81,11 @@ namespace Game1
                     // Update the _bounds
                     if (_flipped)
                     {
-                        _bounds.X = _position.X + 128; //TODO
+                        _bounds.X = _position.X; //TODO
                     }
                     else
                     {
-                        _bounds.X = _position.X + 72; //TODO
+                        _bounds.X = _position.X - 64; //TODO
                     }
                 }
 
@@ -100,11 +100,11 @@ namespace Game1
                     // Update the _bounds
                     if(_flipped)
                     {
-                        _bounds.X = _position.X + 128; //TODO
+                        _bounds.X = _position.X - 64; //TODO
                     }
                     else
                     {
-                        _bounds.X = _position.X + 72; //TODO
+                        _bounds.X = _position.X - 64; //TODO
                     }
                 }
             }
@@ -117,7 +117,7 @@ namespace Game1
                 _flipped = true;
 
                 // Update the _bounds
-                _bounds.X = _position.X + 128; //TODO
+                _bounds.X = _position.X ; //TODO
                 }
             }
             if (_keyboardState.IsKeyDown(Keys.Right) || _keyboardState.IsKeyDown(Keys.D))
@@ -129,11 +129,11 @@ namespace Game1
                 _flipped = false;
 
                 // Update the _bounds
-                _bounds.X = _position.X + 72; //TODO
+                _bounds.X = _position.X - 64; //TODO
                 }
             }
 
-                _bounds.Y = _position.Y + 128; 
+                _bounds.Y = _position.Y; 
         }
 
         /// <summary>
@@ -184,7 +184,15 @@ namespace Game1
                 texture = _idle;
             }
 
-            spriteBatch.Draw(texture, _position, source, Color.White, 0f, new Vector2(0, 0), 2f, spriteEffects, 0);
+            if( !_flipped )
+            {
+                spriteBatch.Draw(texture, _position, source, Color.White, 0f, new Vector2(32, 64), 2f, spriteEffects, 0);
+
+            }
+            else
+            {
+                spriteBatch.Draw(texture, _position, source, Color.White, 0f, new Vector2(64, 64), 2f, spriteEffects, 0);
+            }
 
         }
     }
