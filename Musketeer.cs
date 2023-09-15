@@ -21,7 +21,7 @@ namespace Game1
 
         private Texture2D _idle;
 
-        private Vector2 _position = new Vector2(20, 300);
+        private Vector2 _position = new Vector2(20, 400);
 
         private bool _flipped;
 
@@ -74,7 +74,7 @@ namespace Game1
             if (_keyboardState.IsKeyDown(Keys.Up) || _keyboardState.IsKeyDown(Keys.W))
             {
                 _moving = true;
-                if( _position.Y > 220 )
+                if( _position.Y > 360 )
                 {
                     _position += new Vector2(0, -1.35f);
                     
@@ -92,7 +92,7 @@ namespace Game1
             }
             if (_keyboardState.IsKeyDown(Keys.Down) || _keyboardState.IsKeyDown(Keys.S))
             {
-                if(_position.Y < 460)
+                if(_position.Y < 600)
                 {
                     _position += new Vector2(0, 1.35f);
                     _moving = true;
@@ -110,7 +110,7 @@ namespace Game1
             }
             if (_keyboardState.IsKeyDown(Keys.Left) || _keyboardState.IsKeyDown(Keys.A))
             {
-                if( _position.X > -128)
+                if( _position.X > 0)
                 {
                 _moving = true;
                 _position += new Vector2(-1.35f, 0);
@@ -122,7 +122,7 @@ namespace Game1
             }
             if (_keyboardState.IsKeyDown(Keys.Right) || _keyboardState.IsKeyDown(Keys.D))
             {
-                if (_position.X < 1140)
+                if (_position.X < 1200)
                 {
                 _moving = true;
                 _position += new Vector2(1.35f, 0);
