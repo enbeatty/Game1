@@ -76,7 +76,7 @@ namespace Game1
                 _moving = true;
                 if( _position.Y > 220 )
                 {
-                    _position += new Vector2(0, -1);
+                    _position += new Vector2(0, -1.35f);
                     
                     // Update the _bounds
                     if (_flipped)
@@ -92,36 +92,45 @@ namespace Game1
             }
             if (_keyboardState.IsKeyDown(Keys.Down) || _keyboardState.IsKeyDown(Keys.S))
             {
-                _position += new Vector2(0, 1);
-                _moving = true;
+                if(_position.Y < 460)
+                {
+                    _position += new Vector2(0, 1.35f);
+                    _moving = true;
 
-                // Update the _bounds
-                if(_flipped)
-                {
-                _bounds.X = _position.X + 128; //TODO
-                }
-                else
-                {
-                _bounds.X = _position.X + 72; //TODO
+                    // Update the _bounds
+                    if(_flipped)
+                    {
+                        _bounds.X = _position.X + 128; //TODO
+                    }
+                    else
+                    {
+                        _bounds.X = _position.X + 72; //TODO
+                    }
                 }
             }
             if (_keyboardState.IsKeyDown(Keys.Left) || _keyboardState.IsKeyDown(Keys.A))
             {
+                if( _position.X > -128)
+                {
                 _moving = true;
-                _position += new Vector2(-1, 0);
+                _position += new Vector2(-1.35f, 0);
                 _flipped = true;
 
                 // Update the _bounds
                 _bounds.X = _position.X + 128; //TODO
+                }
             }
             if (_keyboardState.IsKeyDown(Keys.Right) || _keyboardState.IsKeyDown(Keys.D))
             {
+                if (_position.X < 1140)
+                {
                 _moving = true;
-                _position += new Vector2(1, 0);
+                _position += new Vector2(1.35f, 0);
                 _flipped = false;
 
                 // Update the _bounds
                 _bounds.X = _position.X + 72; //TODO
+                }
             }
 
                 _bounds.Y = _position.Y + 128; 

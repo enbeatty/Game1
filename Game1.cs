@@ -172,7 +172,7 @@ namespace Game1
             _spriteBatch.Draw(ball, newrect, Color.White);*/
             _musketeer.Draw(gameTime, _spriteBatch);
 
-            _spriteBatch.DrawString(_pixelUltima, "Welcome", new Vector2(315, 100), Color.Black); //TODO
+            _spriteBatch.DrawString(_pixelUltima, "WORDS", new Vector2(315, 100), Color.Black); //TODO
 
             _spriteBatch.End();
 
