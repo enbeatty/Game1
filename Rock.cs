@@ -19,6 +19,9 @@ namespace Game1
         private Texture2D _rock;
 
         private Vector2 _position;
+        private double _movingTimer;
+        private double _upTimer;
+        private bool _up = true;
 
         private Random rand = new Random();
 
@@ -36,6 +39,11 @@ namespace Game1
         {
             _position = position;
             _bounds = new BoundingRectangle(position + new Vector2(16, 16), 32, 32);
+            int num = rand.Next(0, 2);
+            if(num == 0)
+            { 
+                _up = false;
+            }
         }
  
         /// <summary>
@@ -44,7 +52,7 @@ namespace Game1
         /// <param name="content">The ContentManager to load with</param>
         public void LoadContent(ContentManager content)
         {
-            int num = rand.Next(1, 5);
+            int num = rand.Next(1, 6);
             string name = "";
             switch(num)
             {
@@ -66,6 +74,37 @@ namespace Game1
             }
 
             _rock = content.Load<Texture2D>(name);
+        }
+
+        /// <summary>
+        /// Updates the sprite's _position based on user input
+        /// </summary>
+        /// <param name="gameTime">The GameTime</param>
+        public void Update(GameTime gameTime)
+        {
+            //Update direction timer
+            _movingTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            _upTimer += gameTime.ElapsedGameTime.TotalSeconds;
+
+            //If the Cloud leaves screen fully have it appear on other side.
+            if (_movingTimer > .005)
+            {
+                if(_up)
+                {
+                    _position += new Vector2(0, 0.025f);
+                }
+                else
+                {
+                    _position -= new Vector2(0, 0.025f);
+                }
+                _movingTimer -= .005;
+            }
+
+            if(_upTimer > .5)
+            {
+                _up = !_up;
+                _upTimer -= .5;
+            }
         }
 
         /// <summary>

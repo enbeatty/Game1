@@ -133,6 +133,7 @@ namespace Game1
 
             foreach (Rock r in _rocks)
             {
+                r.Update(gameTime);
                 if (!r.Collected && r.Bounds.CollidesWith(_musketeer.Bounds))
                 {
                     _rocksLeft--;
