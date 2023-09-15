@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SharpDX.Direct3D9;
 
 namespace Game1
 {
@@ -22,13 +21,13 @@ namespace Game1
 
         private Texture2D _idle;
 
-        private Vector2 _position = new Vector2(200, 200);
+        private Vector2 _position = new Vector2(20, 300);
 
         private bool _flipped;
 
         private short _animationFrame = 0;
 
-        private BoundingRectangle _bounds = new BoundingRectangle(new Vector2(200 - 16, 200 - 16), 32, 32);
+        private BoundingRectangle _bounds = new BoundingRectangle(new Vector2(-128, -128), 48, 128);
 
         /// <summary>
         /// The bounding volume of the sprite
@@ -65,35 +64,67 @@ namespace Game1
             {
                 _moving = false;
                 _movingTimer -= .3;
+
+                // Update the _bounds
+                _bounds.X = _position.X + 100; //TODO
+                _bounds.Y = _position.Y + 100; //TODO
             }
 
             // Apply keyboard movement
             if (_keyboardState.IsKeyDown(Keys.Up) || _keyboardState.IsKeyDown(Keys.W))
             {
-                _position += new Vector2(0, -1);
                 _moving = true;
+                if( _position.Y > 220 )
+                {
+                    _position += new Vector2(0, -1);
+                    
+                    // Update the _bounds
+                    if (_flipped)
+                    {
+                        _bounds.X = _position.X + 128; //TODO
+                    }
+                    else
+                    {
+                        _bounds.X = _position.X + 72; //TODO
+                    }
+                }
+
             }
             if (_keyboardState.IsKeyDown(Keys.Down) || _keyboardState.IsKeyDown(Keys.S))
             {
                 _position += new Vector2(0, 1);
                 _moving = true;
+
+                // Update the _bounds
+                if(_flipped)
+                {
+                _bounds.X = _position.X + 128; //TODO
+                }
+                else
+                {
+                _bounds.X = _position.X + 72; //TODO
+                }
             }
             if (_keyboardState.IsKeyDown(Keys.Left) || _keyboardState.IsKeyDown(Keys.A))
             {
                 _moving = true;
                 _position += new Vector2(-1, 0);
                 _flipped = true;
+
+                // Update the _bounds
+                _bounds.X = _position.X + 128; //TODO
             }
             if (_keyboardState.IsKeyDown(Keys.Right) || _keyboardState.IsKeyDown(Keys.D))
             {
                 _moving = true;
                 _position += new Vector2(1, 0);
                 _flipped = false;
+
+                // Update the _bounds
+                _bounds.X = _position.X + 72; //TODO
             }
 
-            // Update the _bounds
-            _bounds.X = _position.X - 16; //TODO
-            _bounds.Y = _position.Y - 16; //TODO
+                _bounds.Y = _position.Y + 128; 
         }
 
         /// <summary>

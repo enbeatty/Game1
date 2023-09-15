@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace Game1
 {
@@ -8,6 +10,7 @@ namespace Game1
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Random _random = new Random();
 
         /// <summary>
         /// Background Sprites
@@ -24,7 +27,21 @@ namespace Game1
         /// Characters
         /// </summary>
         private Musketeer _musketeer;
-        private Bird _bird;
+        private Bird[] _birds;
+        private Rock[] _rocks;
+
+        private int _rockCount = 8;
+        private int _rocksCollected = 0;
+
+        /// <summary>
+        /// Sound
+        /// </summary>
+        private Song _backgroundMusic;
+
+        /// <summary>
+        /// Testing
+        /// </summary>
+        private Texture2D ball;
 
         public Game1()
         {
@@ -55,7 +72,22 @@ namespace Game1
             _backgroundWall = Content.Load<Texture2D>("Battleground2/wall@windows");
 
             _musketeer = new Musketeer();
-            _bird = new Bird() { Position = new Vector2(100, 100) };
+            _birds = new Bird[]
+                {
+                new Bird() { Position = new Vector2(100, 100) },
+                new Bird() { Position = new Vector2(80, 110) },
+                new Bird() { Position = new Vector2(80, 80) },
+                new Bird() { Position = new Vector2(60, 120) },
+                new Bird() { Position = new Vector2(60, 60) }
+                };
+
+            _rocks = new Rock[_rockCount];
+            for(int i = 0; i < _rockCount; i++)
+            {
+            _rocks[i] = new Rock(new Vector2(_random.Next(150, 1240), _random.Next(420, 620)));
+            }
+
+            ball = Content.Load<Texture2D>("rectangle");
             base.Initialize();
         }
 
@@ -63,7 +95,19 @@ namespace Game1
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _musketeer.LoadContent(Content);
-            _bird.LoadContent(Content);
+            foreach(Bird b in _birds)
+            {
+                b.LoadContent(Content);
+            }
+
+            foreach(Rock r in  _rocks)
+            {
+                r.LoadContent(Content);
+            }
+
+            _backgroundMusic = Content.Load<Song>("WaterDropletWalk");
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(_backgroundMusic);
 
             // TODO: use this.Content to load your game content here
         }
@@ -75,7 +119,19 @@ namespace Game1
 
             // TODO: Add your update logic here
             _musketeer.Update(gameTime);
-            _bird.Update(gameTime);
+
+            foreach(Bird b in _birds)
+            {
+            b.Update(gameTime);
+            }
+
+            foreach (Rock r in _rocks)
+            {
+                if (!r.Collected && r.Bounds.CollidesWith(_musketeer.Bounds))
+                {
+                    r.Collected = true;
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -87,13 +143,27 @@ namespace Game1
             _spriteBatch.Begin();
             _spriteBatch.Draw(_background, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundMount, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
-            _bird.Draw(gameTime, _spriteBatch);
+            foreach(Bird b in _birds)
+            {
+            b.Draw(gameTime, _spriteBatch);
+            }
             _spriteBatch.Draw(_backgroundWall, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundColumns, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundFloor, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundDragon, new Vector2(0,0), null, Color.White, 0f, new Vector2(0,0), .6666f, SpriteEffects.None, 0);
             _spriteBatch.Draw(_backgroundCandeliar, new Vector2(0, 0), null, Color.White, 0f, new Vector2(0, 0), .6666f, SpriteEffects.None, 0);
 
+            foreach(Rock r in _rocks)
+            {
+                r.Draw(gameTime, _spriteBatch);
+                
+                var rect = new Rectangle((int)r.Bounds.X, (int)r.Bounds.Y, (int)r.Bounds.Width, (int)r.Bounds.Height);
+                _spriteBatch.Draw(ball, rect, Color.White);
+                
+            }
+
+             var newrect = new Rectangle((int)_musketeer.Bounds.X, (int)_musketeer.Bounds.Y, (int)_musketeer.Bounds.Width, (int)_musketeer.Bounds.Height);
+            _spriteBatch.Draw(ball, newrect, Color.White);
             _musketeer.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.End();
