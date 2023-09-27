@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -37,6 +38,7 @@ namespace Game1
         /// Sound
         /// </summary>
         private Song _backgroundMusic;
+        private SoundEffect _rockPickup;
 
         /// <summary>
         /// Fonts
@@ -110,6 +112,8 @@ namespace Game1
                 r.LoadContent(Content);
             }
 
+            _rockPickup = Content.Load<SoundEffect>("pickupCoin");
+            SoundEffect.MasterVolume = .3f;
             _backgroundMusic = Content.Load<Song>("WaterDropletWalk");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(_backgroundMusic);
@@ -138,6 +142,7 @@ namespace Game1
                 {
                     _rocksLeft--;
                     r.Collected = true;
+                    _rockPickup.Play();
                 }
             }
             base.Update(gameTime);

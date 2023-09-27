@@ -193,6 +193,12 @@
 /processorParam:TextureFormat=Color
 /build:Musketeer/Walk.png
 
+#begin pickupCoin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:pickupCoin.wav
+
 #begin pixel_ultima.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
