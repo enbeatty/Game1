@@ -114,7 +114,7 @@ namespace Game1
 
             _rockPickup = Content.Load<SoundEffect>("pickupCoin");
             SoundEffect.MasterVolume = .3f;
-            _backgroundMusic = Content.Load<Song>("WaterDropletWalk");
+            _backgroundMusic = Content.Load<Song>("WaterDropletWalkOrgan");
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(_backgroundMusic);
 

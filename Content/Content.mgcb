@@ -169,6 +169,12 @@
 /processorParam:TextureFormat=Color
 /build:Bird/Walk.png
 
+#begin D_for_Death.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:D_for_Death.mp3
+
 #begin Musketeer/Idle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -223,4 +229,10 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:WaterDropletWalk.mp3
+
+#begin WaterDropletWalkOrgan.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:WaterDropletWalkOrgan.mp3
 
