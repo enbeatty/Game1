@@ -77,6 +77,11 @@ namespace Game1.Screens
         {
             base.Update(gameTime, otherScreenHasFocus, false);
 
+            if(_rocksLeft <= 0)
+            {
+                LoadingScreen.Load(ScreenManager, true, 0, new RuinsScreen(), new CastleGameplayScreen());
+            }
+
             _musketeer.Update(gameTime);
 
             foreach (Rock r in _rocks)
@@ -95,6 +100,7 @@ namespace Game1.Screens
         {
             base.Draw(gameTime);
             var spriteBatch = ScreenManager.SpriteBatch;
+            var font = ScreenManager.Font;
             spriteBatch.Begin();
             foreach (Rock r in _rocks)
             {
@@ -104,7 +110,7 @@ namespace Game1.Screens
             }
             _musketeer.Draw(gameTime, spriteBatch);
 
-            //spriteBatch.DrawString(_pixelUltima, $"Crystals left: {_rocksLeft}", new Vector2(0, 0), Color.LightGoldenrodYellow); //TODO
+            spriteBatch.DrawString(font, $"Crystals left: {_rocksLeft}", new Vector2(0, 0), Color.LightGoldenrodYellow); //TODO
 
             spriteBatch.End();
         }
