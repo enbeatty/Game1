@@ -1,14 +1,18 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game1.StateManagement;
+using Game1;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
+using Game1.Screens;
 
 namespace Game1
 {
     public class Game1 : Game
     {
+        /*
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Random _random = new Random();
@@ -171,12 +175,12 @@ namespace Game1
                 r.Draw(gameTime, _spriteBatch);
                 
                 /*var rect = new Rectangle((int)r.Bounds.X, (int)r.Bounds.Y, (int)r.Bounds.Width, (int)r.Bounds.Height);
-                _spriteBatch.Draw(ball, rect, Color.White);*/
+                _spriteBatch.Draw(ball, rect, Color.White);
                 
             }
 
              /*var newrect = new Rectangle((int)_musketeer.Bounds.X, (int)_musketeer.Bounds.Y, (int)_musketeer.Bounds.Width, (int)_musketeer.Bounds.Height);
-            _spriteBatch.Draw(ball, newrect, Color.White);*/
+            _spriteBatch.Draw(ball, newrect, Color.White);
             _musketeer.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.DrawString(_pixelUltima, $"Crystals left: {_rocksLeft}", new Vector2(0, 0), Color.LightGoldenrodYellow); //TODO
@@ -184,6 +188,53 @@ namespace Game1
             _spriteBatch.End();
 
             base.Draw(gameTime);
+        }*/
+
+        private GraphicsDeviceManager _graphics;
+        private readonly ScreenManager _screenManager;
+
+        public Game1()
+        {
+            _graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
+
+            //720p
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
+
+            var screenFactory = new ScreenFactory();
+            Services.AddService(typeof(IScreenFactory), screenFactory);
+
+            _screenManager = new ScreenManager(this);
+            Components.Add(_screenManager);
+
+            AddInitialScreens();
+        }
+
+        private void AddInitialScreens()
+        {
+            _screenManager.AddScreen(new BackgroundScreen(), null);
+            _screenManager.AddScreen(new MainMenuScreen(), null);
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        protected override void LoadContent() { }
+
+        protected override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+            base.Draw(gameTime);    // The real drawing happens inside the ScreenManager component
         }
     }
 }
