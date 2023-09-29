@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Game1.StateManagement;
+using Microsoft.Xna.Framework.Content;
 
 namespace Game1.Screens
 {
@@ -18,9 +20,12 @@ namespace Game1.Screens
     //   screen will be the only thing displayed while this load is taking place.
     public class LoadingScreen : GameScreen
     {
+        private ContentManager _content;
+
         private readonly bool _loadingIsSlow;
         private bool _otherScreensAreGone;
         private readonly GameScreen[] _screensToLoad;
+        private Texture2D _backgroundTexture;
 
         // Constructor is private: loading screens should be activated via the static Load method instead.
         private LoadingScreen(ScreenManager screenManager, bool loadingIsSlow, GameScreen[] screensToLoad)
@@ -29,6 +34,15 @@ namespace Game1.Screens
             _screensToLoad = screensToLoad;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
+        }
+
+        public override void Activate()
+        {
+            if (_content == null)
+                _content = new ContentManager(ScreenManager.Game.Services, "Content");
+
+            _backgroundTexture = _content.Load<Texture2D>("Background");
+        
         }
 
         // Activates the loading screen.
@@ -41,6 +55,7 @@ namespace Game1.Screens
 
             // Create and activate the loading screen.
             var loadingScreen = new LoadingScreen(screenManager, loadingIsSlow, screensToLoad);
+            //_backgroundTexture = _content.Load<Texture2D>("background");
 
             screenManager.AddScreen(loadingScreen, controllingPlayer);
         }
@@ -101,6 +116,7 @@ namespace Game1.Screens
 
                 // Draw the text.
                 spriteBatch.Begin();
+                spriteBatch.Draw(_backgroundTexture, new Vector2(0,0), Color.White);
                 spriteBatch.DrawString(font, message, textPosition, color);
                 spriteBatch.End();
             }

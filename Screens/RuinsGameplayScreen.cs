@@ -17,7 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 
 namespace Game1.Screens
 {
-    public class CastleGameplayScreen : GameScreen
+    public class RuinsGameplayScreen : GameScreen
     {
         private ContentManager _content;
 
@@ -33,7 +33,7 @@ namespace Game1.Screens
         private int _rocksLeft = 8;
         private SoundEffect _rockPickup;
 
-        public CastleGameplayScreen()
+        public RuinsGameplayScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
@@ -79,7 +79,7 @@ namespace Game1.Screens
 
             if(_rocksLeft <= 0)
             {
-                LoadingScreen.Load(ScreenManager, true, 0, new RuinsScreen(), new RuinsGameplayScreen());
+                LoadingScreen.Load(ScreenManager, true, 0, new BackgroundScreen(), new MainMenuScreen());
             }
 
             _musketeer.Update(gameTime);

@@ -156,7 +156,7 @@ namespace Game1
                 if (_animationTimer > 0.2)
                 {
                     _animationFrame++;
-                    if (_animationFrame > 6)
+                    if (_animationFrame > 5)
                     {
                         _animationFrame = 0;
                     }
